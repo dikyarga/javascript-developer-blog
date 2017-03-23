@@ -5,6 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// Config
+var dbConfig = require('./config/database')
+
+// Mongoose
+var mongoose = require('mongoose')
+mongoose.Promise = global.Promise;
+mongoose.connect(dbConfig.url)
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
