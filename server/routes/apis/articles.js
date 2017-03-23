@@ -14,4 +14,6 @@ router.post('/', articleController.create)
 
 router.put('/:id', articleController.update)
 
+router.delete('/:id', articleController.destroy)
+
 module.exports = router;

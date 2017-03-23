@@ -49,27 +49,42 @@ module.exports = {
     },
     update: function(req, res, next) {
         Article.findById(req.params.id, function(err, article) {
-            if (err){
-              res.json({
-                  success: false,
-                  msg: err
-              })
+            if (err) {
+                res.json({
+                    success: false,
+                    msg: err
+                })
             }
             article.title = req.body.title
             article.content = req.body.content
 
             article.save(function(err) {
                 if (err) {
-                  res.json({
-                      success: false,
-                      msg: err
-                  })
+                    res.json({
+                        success: false,
+                        msg: err
+                    })
                 }
                 res.json({
-                  success: true,
-                  msg: 'article updated'
+                    success: true,
+                    msg: 'article updated'
                 })
             })
+        })
+    },
+    destroy: function(req, res, next) {
+        // Using find and remove
+        Article.findByIdAndRemove(req.params.id, function(err) {
+          if (err) {
+              res.json({
+                  success: false,
+                  msg: err
+              })
+          }
+          res.json({
+              success: true,
+              msg: 'article deleted'
+          })
         })
     },
 }
