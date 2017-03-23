@@ -9,11 +9,14 @@ require('dotenv').config()
 
 var app = express();
 
+
 // cors
 app.use(cors())
 
 // Config
 let dbConfig = require('./config/database')
+
+let authHelper = require('./helpers/authHelper')
 
 // Mongoose
 let mongoose = require('mongoose')

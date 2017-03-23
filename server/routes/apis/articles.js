@@ -6,16 +6,19 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 let articleController = require('../../controllers/articleController')
 
+let authHelper = require('../../helpers/authHelper')
+
+
 router.get('/', articleController.index)
 
 router.get('/:id', articleController.show)
 
 router.get('/slug/:slug', articleController.slug)
 
-router.post('/', articleController.create)
+router.post('/', authHelper.verify, articleController.create)
 
-router.put('/:id', articleController.update)
+router.put('/:id', authHelper.verify, articleController.update)
 
-router.delete('/:id', articleController.destroy)
+router.delete('/:id', authHelper.verify, articleController.destroy)
 
 module.exports = router;
