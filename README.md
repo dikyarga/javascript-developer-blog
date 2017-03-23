@@ -87,7 +87,7 @@ cd server
 npm install
 cp .env.example .env
 configure the credential at .env
-npm run dev
+npm run dev <- you need nodemon to use it
 
 run on http://localhost:3000
 ```
