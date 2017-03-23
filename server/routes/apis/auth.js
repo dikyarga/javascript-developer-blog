@@ -3,6 +3,8 @@ var router = express.Router();
 
 var passport = require('passport');
 
+var jwt = require('jsonwebtoken');
+
 router.get('/ping', function(req, res, next) {
     res.json({
         status: 'up'
@@ -11,7 +13,6 @@ router.get('/ping', function(req, res, next) {
 
 router.post('/register', function(req, res) {
     passport.authenticate('local-signup', function(err, user, info) {
-        let token
         if (err) {
             res.json({
                 msg: err
@@ -19,7 +20,7 @@ router.post('/register', function(req, res) {
         }
 
         if (user) {
-            token = ' user.generateJwt()';
+            var token = jwt.sign({ user: user }, process.env.JWT_SECRET);
             res.status(200);
             res.json({
                 "token": token

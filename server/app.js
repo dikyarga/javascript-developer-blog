@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
+require('dotenv').config()
 
 var app = express();
 
@@ -40,7 +41,7 @@ passport.use('local-signup', new LocalStrategy({
                 return done(err)
             }
             if (user) {
-                return done(null, false, 'signupMessage', 'email is already taken.');
+                return done(null, false, 'email is already taken.');
             } else {
                 var newUser = new User();
 
