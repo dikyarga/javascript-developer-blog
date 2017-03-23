@@ -19,7 +19,9 @@ mongoose.connect(dbConfig.url)
 let passport = require('passport')
 let LocalStrategy = require('passport-local').Strategy;
 
+
 let User = require('./models/user')
+
 
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
@@ -92,8 +94,10 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
+// Route
 var index = require('./routes/index');
 var users = require('./routes/users');
+let authAPI = require('./routes/apis/auth')
 
 
 // view engine setup
@@ -110,6 +114,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api/auth', authAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
