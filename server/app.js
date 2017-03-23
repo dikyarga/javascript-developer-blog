@@ -36,7 +36,7 @@ passport.use('local-signup', new LocalStrategy({
                 return done(err)
             }
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'email is already taken.'));
+                return done(null, false, 'signupMessage', 'email is already taken.');
             } else {
                 var newUser = new User();
 
@@ -65,11 +65,17 @@ passport.use('local-login', new LocalStrategy({
     }
 
     if (!user) {
-      return done(null, false, req.flash('loginMessage', 'Gak ada user'))
+      return done(null, false, {
+        success: false,
+        msg: 'Gak ada user'
+      })
     }
 
     if(!user.validPassword(password)){
-      return done(null, false, req.flash('loginMessage', 'Password salah'))
+      return done(null, false, {
+        success: false,
+        msg: 'Password salah'
+      })
     }
 
     return done(null, user)

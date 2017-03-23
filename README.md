@@ -57,8 +57,8 @@ Maka dari itu, blog inipun di bangun dengan teknologi JavaScript :
 
 Routes | HTTP | Description
 --- | --- | ---
-**/api/signup** | `POST` | Signup a new user
-**/api/signin** | `POST` | User sign in and get credetial token after login
+**/api/register** | `POST` | Register a new user
+**/api/login** | `POST` | User sign in and get credetial token after login
 
 #### Article API
 
