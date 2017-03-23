@@ -112,6 +112,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 let authAPI = require('./routes/apis/auth')
 let articleAPI = require('./routes/apis/articles')
+let homeAPI = require('./routes/apis/home')
 
 
 // view engine setup
@@ -130,6 +131,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/api/auth', authAPI);
 app.use('/api/articles', articleAPI);
+app.use('/api/home', homeAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
