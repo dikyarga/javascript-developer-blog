@@ -9,9 +9,9 @@
             <el-menu-item index="2-1"><router-link to="/articles">Show All</router-link></el-menu-item>
             <el-menu-item index="2-2">Create</el-menu-item>
           </el-submenu>
-      <el-menu-item index="3" style="float: right;" @click.native="logout">Logout</el-menu-item>
-      <el-menu-item index="3" style="float: right;"><router-link to="/login">Login</router-link></el-menu-item>
-      <el-menu-item index="3" style="float: right;"><router-link to="/register">Register</router-link></el-menu-item>
+      <el-menu-item index="3" style="float: right;" @click.native="logout" v-if="isLogined">Logout</el-menu-item>
+      <el-menu-item index="3" style="float: right;" v-if="!isLogined"><router-link to="/login">Login</router-link></el-menu-item>
+      <el-menu-item index="3" style="float: right;" v-if="!isLogined"><router-link to="/register">Register</router-link></el-menu-item>
     </el-menu>
 <br/>
 <br/>
@@ -35,6 +35,7 @@ export default {
             msg: 'Pakai Vue 2.0 sekarang!',
             activeIndex: '1',
             activeIndex2: '2',
+            isLogined: false
         }
     },
     methods: {
@@ -43,6 +44,7 @@ export default {
         },
         logout(){
           localStorage.removeItem('token')
+          this.isLogined = false
         },
         startHacking() {
             this.$notify({
@@ -53,6 +55,11 @@ export default {
         },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
+        },
+        isLogin(){
+          if (localStorage) {
+            this.isLogined = true
+          }
         }
     }
 }

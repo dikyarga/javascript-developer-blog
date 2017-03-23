@@ -30,6 +30,7 @@ export default {
     },
     created() {
         this.getData()
+        this.isLogin()
     },
     methods: {
         getData() {
