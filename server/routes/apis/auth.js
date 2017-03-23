@@ -24,7 +24,8 @@ router.post('/register', function(req, res) {
             }, process.env.JWT_SECRET);
             res.status(200);
             res.json({
-                "token": token
+              success: true,
+              token: token
             });
         } else {
             res.status(401).json(info);
@@ -45,7 +46,8 @@ router.post('/login', function(req, res) {
             }, process.env.JWT_SECRET);
             res.status(200);
             res.json({
-                "token": token
+              success: true,
+              token: token
             });
         } else {
             res.status(401).json(info);
