@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 var articleSchema = Schema({
     title: String,
     content: String,
+    slug: String,
     author: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

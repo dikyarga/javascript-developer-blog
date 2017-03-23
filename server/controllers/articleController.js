@@ -14,6 +14,7 @@ module.exports = {
         let article = new Article({
             title: req.body.title,
             content: req.body.content,
+            slug: req.body.slug,
             author: req.body.author
         })
 
@@ -57,6 +58,7 @@ module.exports = {
             }
             article.title = req.body.title
             article.content = req.body.content
+            article.slug = req.body.slug
 
             article.save(function(err) {
                 if (err) {
