@@ -70,6 +70,8 @@ Routes | HTTP | Description
 **/api/articles/:id** | `DELETE` | Delete an article (only author)
 **/api/articles/:id** | `PUT` | Update data of a article (only author)
 
+#### Home API
+
 Routes | HTTP | Description
 --- | --- | ---
 **/api/home** | `GET` | Get all article and detail author for homepage
