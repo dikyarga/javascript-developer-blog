@@ -67,8 +67,8 @@ Routes | HTTP | Description
 **/api/articles** | `GET` | Get all article
 **/api/articles/:id** | `GET` | Get Single article
 **/api/articles/** | `POST` | Create an article
-**/api/articles/:id** | `DELETE` | Delete an article
-**/api/articles/:id** | `PUT` | Update data of a article
+**/api/articles/:id** | `DELETE` | Delete an article (only author)
+**/api/articles/:id** | `PUT` | Update data of a article (only author)
 
 ### Setup guide
 
