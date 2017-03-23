@@ -45,7 +45,7 @@ export default {
                 })
         },
         toDetailArticle(slug){
-          this.$router.push('/question/' + slug)
+          this.$router.push('/article/' + slug)
         }
     }
 }
