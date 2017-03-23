@@ -53,7 +53,7 @@ Maka dari itu, blog inipun di bangun dengan teknologi JavaScript :
 
 ### API Endpoint
 
-#### AUTH API
+#### Auth API
 
 Routes | HTTP | Description
 --- | --- | ---
@@ -69,6 +69,10 @@ Routes | HTTP | Description
 **/api/articles/** | `POST` | Create an article
 **/api/articles/:id** | `DELETE` | Delete an article (only author)
 **/api/articles/:id** | `PUT` | Update data of a article (only author)
+
+Routes | HTTP | Description
+--- | --- | ---
+**/api/home** | `GET` | Get all article and detail author for homepage
 
 ### Setup guide
 
