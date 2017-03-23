@@ -25,9 +25,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-let host = 'http://localhost:3000/api';
-
 export default {
     data() {
         return {
@@ -43,11 +40,15 @@ export default {
     methods: {
         login(){
           let self = this
-          axios.post(host + '/auth/register/', self.form).then(x => {
-            console.log('hasil : ', x.data);
+          this.axios.post('/auth/register/', self.form).then(x => {
               if (x.data.success) {
                   self.$router.push('/')
               } else {
+                self.$message({
+                    showClose: true,
+                    message: x.data.msg,
+                    type: 'error'
+                });
                   console.log('something wrong');
               }
           })

@@ -28,7 +28,7 @@ router.post('/register', function(req, res) {
               token: token
             });
         } else {
-            res.status(401).json(info);
+            res.json(info);
         }
     })(req, res)
 })
