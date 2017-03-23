@@ -6,12 +6,89 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // Config
-var dbConfig = require('./config/database')
+let dbConfig = require('./config/database')
 
 // Mongoose
-var mongoose = require('mongoose')
+let mongoose = require('mongoose')
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url)
+
+// Passport
+let passport = require('passport')
+let LocalStrategy = require('passport-local').Strategy;
+
+let User = require('./models/user')
+
+passport.use('local-signup', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function(req, email, password, done) {
+    process.nextTick(function() {
+        User.findOne({
+            'local.email': email
+        }, function(err, user) {
+            if (err) {
+                return done(err)
+            }
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'email is already taken.'));
+            } else {
+                var newUser = new User();
+
+                newUser.local.email = email;
+                newUser.local.password = newUser.generateHash(password);
+
+                newUser.save(function(err) {
+                    if (err) throw err;
+                    return done(null, newUser);
+                });
+            }
+        })
+    })
+}));
+
+passport.use('local-login', new LocalStrategy({
+  usernameField : 'email',
+  passwordField : 'password',
+  passReqToCallback : true
+}, function(req, email, password, done){
+  User.findOne({
+    'local.email': email
+  }, function(err, user){
+    if (err) {
+      return done(err)
+    }
+
+    if (!user) {
+      return done(null, false, req.flash('loginMessage', 'Gak ada user'))
+    }
+
+    if(!user.validPassword(password)){
+      return done(null, false, req.flash('loginMessage', 'Password salah'))
+    }
+
+    return done(null, user)
+  })
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 
 var index = require('./routes/index');
 var users = require('./routes/users');
