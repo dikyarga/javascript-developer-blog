@@ -12,4 +12,6 @@ router.get('/:id', articleController.show)
 
 router.post('/', articleController.create)
 
+router.put('/:id', articleController.update)
+
 module.exports = router;

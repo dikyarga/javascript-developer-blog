@@ -33,18 +33,43 @@ module.exports = {
     },
     show: function(req, res, next) {
         Article.findById(req.params.id, function(err, article) {
-          if (err) {
+            if (err) {
+                res.json({
+                    success: false,
+                    msg: err
+                })
+            } else {
+                res.json({
+                    success: true,
+                    data: article,
+                    msg: 'Article saved'
+                })
+            }
+        })
+    },
+    update: function(req, res, next) {
+        Article.findById(req.params.id, function(err, article) {
+            if (err){
               res.json({
                   success: false,
                   msg: err
               })
-          } else {
-              res.json({
+            }
+            article.title = req.body.title
+            article.content = req.body.content
+
+            article.save(function(err) {
+                if (err) {
+                  res.json({
+                      success: false,
+                      msg: err
+                  })
+                }
+                res.json({
                   success: true,
-                  data: article,
-                  msg: 'Article saved'
-              })
-          }
+                  msg: 'article updated'
+                })
+            })
         })
     },
 }
