@@ -35,8 +35,8 @@ module.exports = {
       jwt.verify(token, 'dikyarga', function(err, decoded) {
         if (typeof decoded == 'object') {
           Article.findById(req.params.id, function(err, article) {
-            console.log('decoded : ', decoded) // bar
-            console.log('article : ', article) // bar
+            // console.log('decoded : ', decoded) // bar
+            // console.log('article : ', article) // bar
               if (err) {
                   res.json({
                       success: false,
