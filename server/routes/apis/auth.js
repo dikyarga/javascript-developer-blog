@@ -18,9 +18,10 @@ router.post('/register', function(req, res) {
                 msg: err
             })
         }
-
         if (user) {
-            var token = jwt.sign({ user: user }, process.env.JWT_SECRET);
+            var token = jwt.sign({
+                user: user
+            }, process.env.JWT_SECRET);
             res.status(200);
             res.json({
                 "token": token
@@ -33,15 +34,15 @@ router.post('/register', function(req, res) {
 
 router.post('/login', function(req, res) {
     passport.authenticate('local-login', function(err, user, info) {
-        let token
         if (err) {
             res.json({
                 msg: err
             })
         }
-
         if (user) {
-            token = ' user.generateJwt()';
+            var token = jwt.sign({
+                user: user
+            }, process.env.JWT_SECRET);
             res.status(200);
             res.json({
                 "token": token
@@ -51,8 +52,6 @@ router.post('/login', function(req, res) {
         }
     })(req, res)
 })
-
-
 
 router.get('/logout', function(req, res) {
 
