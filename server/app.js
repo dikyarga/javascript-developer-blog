@@ -41,10 +41,14 @@ passport.use('local-signup', new LocalStrategy({
                 return done(err)
             }
             if (user) {
-                return done(null, false, 'email is already taken.');
+                return done(null, false, {
+                  success: false,
+                  msg: 'email is already taken.'
+                });
             } else {
                 var newUser = new User();
 
+                newUser.local.name = req.body.name;
                 newUser.local.email = email;
                 newUser.local.password = newUser.generateHash(password);
 
