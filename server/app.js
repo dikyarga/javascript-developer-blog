@@ -74,7 +74,7 @@ passport.use('local-login', new LocalStrategy({
     if (!user) {
       return done(null, false, {
         success: false,
-        msg: 'Gak ada user'
+        msg: 'User tidak ditemukan'
       })
     }
 
