@@ -17,8 +17,8 @@ router.get('/slug/:slug', articleController.slug)
 
 router.post('/', authHelper.verify, articleController.create)
 
-router.put('/:id', authHelper.verify, articleController.update)
+router.put('/:id', authHelper.verify, authHelper.isAuthor, articleController.update)
 
-router.delete('/:id', authHelper.verify, articleController.destroy)
+router.delete('/:id', authHelper.verify, authHelper.isAuthor, articleController.destroy)
 
 module.exports = router;

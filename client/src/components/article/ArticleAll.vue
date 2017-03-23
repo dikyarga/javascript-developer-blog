@@ -6,8 +6,6 @@
     <el-table :data="articles" :default-sort="{prop: 'title', order: 'descending'}" style="width: 100%">
         <el-table-column prop="title" label="Title" sortable width="180">
         </el-table-column>
-        <el-table-column prop="content" label="Content" width="180">
-        </el-table-column>
         <el-table-column prop="slug" label="Slug">
         </el-table-column>
         <el-table-column prop="author" label="Author">
