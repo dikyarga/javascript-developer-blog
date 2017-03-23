@@ -10,6 +10,8 @@ router.get('/', articleController.index)
 
 router.get('/:id', articleController.show)
 
+router.get('/slug/:slug', articleController.slug)
+
 router.post('/', articleController.create)
 
 router.put('/:id', articleController.update)

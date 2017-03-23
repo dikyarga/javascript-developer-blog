@@ -89,4 +89,15 @@ module.exports = {
           })
         })
     },
+    slug: function(req, res, next){
+      Article.findOne({
+        'slug': req.params.slug
+      }).populate('author').then((article) => {
+          res.json({
+            success: true,
+            data: article,
+            msg: 'success retrive single data'
+          })
+      })
+    }
 }
